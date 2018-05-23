@@ -13,7 +13,7 @@ You will need to have access to a Redis server for the task message passing.  On
 
 For test purposes this can be run on your local computer.  So, in this directory you can just run `sh runme_workers`.
 
-Alternatively, you could copy this repo onto a remote machine and just run the same `sh runme_workers` (don't forget to setup and activate a virtual environment).
+Alternatively, you could clone this repo onto a remote machine and just run the same `sh runme_workers` (don't forget to setup and activate a virtual environment).
 
 ## Distribution computer
 
