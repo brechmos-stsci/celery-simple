@@ -1,3 +1,6 @@
+# Simple Celery Setup.
+
+This is what I came up with based on reading through some Celery documentation and examples. There are simpler versions out there... The main reason it is written this way is that in my *actual* code I wanted to be able to run the `calculate(images)` in smoother.py locally without Celery *or* with Celery remotely.  This is why the `celery_smoother.py` script is written this way.
 
 ## Pip Requirements
 
