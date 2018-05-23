@@ -29,6 +29,8 @@ def calculate_celery(images):
     This function will queue up all the jobs and run them using celery.
     """
 
+    log.info('Going to calculate for {} images'.format(len(images)))
+
     #
     # Queue up and run
     #
@@ -54,6 +56,8 @@ def calculate_celery(images):
         states_complete = [int(v) for k, v in counts.items()]
         print('\rCalculating fingerprints: {} {:.1f}%'.format(
             states_complete, sum(states_complete)/len(images)*100), end='')
+
+    log.info('\nCompleted')
 
     #
     # Get the results (is a list of lists so need to compress them)

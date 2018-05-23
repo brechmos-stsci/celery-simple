@@ -23,6 +23,7 @@ def calculate(images, task=None):
 
     images_return = []
     for ii, image in enumerate(images):
+        log.info('Calculating for image {}/{}'.format(ii, len(images)))
 
         #
         # Update the progress if we are using the task version of this.
