@@ -1,6 +1,12 @@
 from __future__ import absolute_import, unicode_literals
 from celery import Celery
 
+#
+# Setup the actual celery app which is used
+# in a few other parts of the code.  Main thing
+# here is we need to define who to talk to in 
+# order to disseminate jobs and look for jobs.
+#
 app = Celery('transfer_learning',
              broker='redis://',
              backend='redis://',

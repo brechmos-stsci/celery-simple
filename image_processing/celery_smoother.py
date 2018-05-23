@@ -17,6 +17,9 @@ log.setLevel(logging.INFO)
 
 
 def chunks(l, k):
+    """
+    Take a list, l, and create k sublists.
+    """
     n = len(l)
     return [l[i * (n // k) + min(i, n % k):(i+1) * (n // k) + min(i+1, n % k)] for i in range(k)]
 
@@ -26,14 +29,20 @@ def calculate_celery(images):
     This function will queue up all the jobs and run them using celery.
     """
 
+    #
     # Queue up and run
+    #
+
     job = group([
         calculate_task.s(tt) for tt in chunks(images, 3)
     ])
     result = job.apply_async()
 
+    #
     # Display progress -- completely unneccesary,
     # only useful for checking state of completion
+    #
+
     counts = OrderedDict({x.id: 0 for x in result.children})
     while not result.ready():
         time.sleep(0.1)
@@ -46,8 +55,11 @@ def calculate_celery(images):
         print('\rCalculating fingerprints: {} {:.1f}%'.format(
             states_complete, sum(states_complete)/len(images)*100), end='')
 
+    #
     # Get the results (is a list of lists so need to compress them)
     # This is needed.
+    #
+
     r = result.get()
     return list(itertools.chain(*r))
 
@@ -57,7 +69,10 @@ def calculate_task(images):
     """
     This is the task/function that gets run from the queue.
     """
-    log.debug('app.current_task {}'.format(app.current_task))
 
+    #
     # The second parameter allows state information to be passed back
+    # for the "percent complete" display
+    #
+
     return calculate(images, task=app.current_task)
