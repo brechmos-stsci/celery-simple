@@ -5,6 +5,10 @@ There are only a few requirements but you will have to create a python-env, virt
 
 For both the worker computers and main computer you will need to activate the above environment.
 
+## Redis Broker
+
+You will need to have access to a Redis server for the task message passing.  On my Mac, I went to `https://redis.io/download`, downloaded it, untarred and compiled.  Then ran it using `redis-server` in the appropriate directory.
+
 ## Worker Computers
 
 For test purposes this can be run on your local computer.  So, in this directory you can just run `sh runme_workers`.

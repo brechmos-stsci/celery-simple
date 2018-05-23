@@ -1,0 +1,4 @@
+numpy
+celery
+redis
+ipython
